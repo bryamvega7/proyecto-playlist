@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "authors": "Natalia - Bryam",
+  "authors": "Natalia Paira - Bryam Vega",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.11.18",
