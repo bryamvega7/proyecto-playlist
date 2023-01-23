@@ -19,6 +19,8 @@ model User {
   update_at DateTime @updatedAt
   date_born DateTime?
 
+  playlist Playlist[]
+
   @@map("users")
 }
 
@@ -33,5 +35,31 @@ model Song {
   created_at DateTime @default(now())
   update_at DateTime @updatedAt
 
+  playlistSongs PlaylistSong[] //@relation(fields: [song],references: [id])
+
   @@map("songs")
+}
+
+model Playlist {
+  id    Int     @id @default(autoincrement())
+  name  String
+  user  User  @relation(fields: [user_id], references: [id])
+  user_id  Int
+  songs PlaylistSong[] //@relation(fields: [playlist] ,references: [id])
+  created_at DateTime @default(now())
+  update_at DateTime @updatedAt
+
+  @@map("playlists")
+}
+
+model PlaylistSong {
+  id    Int     @id @default(autoincrement())
+  song  Song   @relation(fields: [song_id], references: [id])
+  song_id  Int
+  playlist  Playlist   @relation(fields: [playlist_id], references: [id])
+  playlist_id  Int
+  created_at DateTime @default(now())
+  update_at DateTime @updatedAt
+
+  @@map("playlistSong")
 }
