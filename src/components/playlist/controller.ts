@@ -17,6 +17,24 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
       res.status(500).json({ ok: false, message: error });
     }
   };
+
+  export const findOne = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const id: number = parseInt(req.params.id);
+      const playlists = await prisma.playlist.findUnique({
+        where: { id: Number(id) },
+        include: { user: true, songs: true}
+      });
+  
+      res.status(200).json({
+        ok: true,
+        data: playlists,
+      });
+    } catch (error) {
+      res.status(500).json({ ok: false, message: error });
+    }
+  };
+
   
 export const store = async (req: Request, res: Response): Promise<void> => {
     try {
