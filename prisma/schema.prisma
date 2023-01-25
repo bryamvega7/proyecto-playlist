@@ -34,6 +34,7 @@ model Song {
   duration Int
   created_at DateTime @default(now())
   update_at DateTime @updatedAt
+  is_private Boolean?   @default(false)
 
   playlistSongs PlaylistSong[] //@relation(fields: [song],references: [id])
 
